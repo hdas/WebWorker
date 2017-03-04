@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WebWorker
+Bundle-SymbolicName: com.financeutils.WebWorker
+Bundle-Version: 1.0.0
+Export-Package: com.financeutils.webwork;version="1.0.0"
+Bundle-ContactAddress: das_hansaraj@hotmail.com
+Import-Package: org.apache.commons.io;version="2.2.0"
+Bundle-Description: FinanceUtils WebWorker Service

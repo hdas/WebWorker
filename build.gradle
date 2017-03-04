@@ -1,0 +1,92 @@
+
+ext {
+    // The drivers we want to use
+    drivers = ["chrome"]
+    ext {
+        seleniumVersion = '2.53.1'
+        chromeDriverVersion = '2.19'
+        phantomJsVersion = '1.9.7'
+        jsoupVersion = '1.8.3'
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'osgi'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '1.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+//Project dependencies
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    //compile 'org.slf4j:slf4j-simple:1.7.18'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile "org.jsoup:jsoup:$jsoupVersion"
+    compile "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
+    compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+	//compile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:2.2.2'
+
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+    //compile "org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion"
+    compile 'org.seleniumhq.selenium:htmlunit-driver:2.21'
+
+    //compile 'com.github.detro.ghostdriver:phantomjsdriver:1.2.0'
+    compile 'com.codeborne:phantomjsdriver:1.3.0'
+
+    //compile "org.jboss.arquillian.extension:arquillian-phantom-driver:1.2.1.Final"
+    //compile 'com.machinepublishers:jbrowserdriver:0.10.1'
+
+    runtime "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
+
+    //testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+    // using a custom version of phantomjs driver for now as the original one does not support WebDriver > 2.43.1
+//    compile("com.codeborne:phantomjsdriver:1.2.1") {
+//        // phantomjs driver pulls in a different selenium version
+//        transitive = false
+//    }
+
+}
+
+jar {
+    manifest { // the manifest of the default jar is of type OsgiManifest
+        name = 'KshFinance WebWorker'
+        instruction 'Private-Package',
+                'com.financeutils.webwork',
+                'com.financeutils.webworkerimpl'
+        instruction 'Bundle-Vendor', 'FinanceUtils'
+        instruction 'Bundle-Description', 'WebWorker'
+        instruction 'Bundle-DocURL', 'http://www.financeutils.com'
+        instruction 'Export-Package',
+                "org.jsoup;version=$jsoupVersion",
+                "org.jsoup.nodes;version=$jsoupVersion",
+                "org.jsoup.select;version=$jsoupVersion",
+                "org.openqa.selenium;version=$seleniumVersion",
+                "org.openqa.selenium.remote;version=$seleniumVersion",
+                "com.financeutils.webwork;version=$version",
+                "com.financeutils.webworkerimpl;version=$version"
+    }
+
+    //from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+//    manifest = osgiManifest {
+//        instruction 'Bundle-Vendor', 'financeutils'
+//    }
+
+
+    /*manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version
+
+    }*/
+    baseName = project.name + '-all'
+    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
