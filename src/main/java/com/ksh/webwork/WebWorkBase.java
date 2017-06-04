@@ -49,15 +49,13 @@ public abstract class WebWorkBase implements IWebWork, IAsyncWebWork
     @Override
     public boolean canHandle(final String url)
     {
-        String tmpUrls = StringUtils.stripEnd(url, "/");
         try {
             URI tmpUrl = new URI(url);
-            if (tmpUrls.equals(initialUri))
+            if (tmpUrl.equals(initialUri))
                 return true;
 
-            String tfile = tmpUrl.getPath();
-            String ifile = initialUri.getPath();
-            if(tfile.equals("/")) tfile = "";
+            String tfile = StringUtils.stripEnd(tmpUrl.getPath(), "/");
+            String ifile = StringUtils.stripEnd(initialUri.getPath(), "/");
 
             String tqr = tmpUrl.getQuery();
             String iqr = initialUri.getQuery();
