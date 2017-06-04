@@ -130,7 +130,7 @@ public class WebWorker implements IWebWorker
     }
 
     private HtmlUnitDriver createHtmlUnitDriver() {
-        HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_38, true);
+        HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.BEST_SUPPORTED, true);
         return driver;
     }
 
