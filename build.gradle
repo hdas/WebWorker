@@ -3,7 +3,7 @@ ext {
     ext {
         seleniumVersion = '3.4.0'
         chromeDriverVersion = '2.19'
-        phantomJsVersion = '1.9.7'
+//        phantomJsVersion = '1.9.7'
         jsoupVersion = '1.10.2'
     }
 }

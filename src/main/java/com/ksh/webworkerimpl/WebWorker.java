@@ -8,16 +8,11 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.ksh.webwork.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,18 +116,18 @@ public class WebWorker implements IWebWorker
         }
     }
 
-    private PhantomJSDriver createPhantomJsDriver() {
-        final String userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36";
-        DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
-        capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_CUSTOMHEADERS_PREFIX + "User-Agent", userAgent);
-        PhantomJSDriver driver = new PhantomJSDriver(capabilities);
-        return driver;
-    }
-
-    private HtmlUnitDriver createHtmlUnitDriver() {
-        HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.BEST_SUPPORTED, true);
-        return driver;
-    }
+//    private PhantomJSDriver createPhantomJsDriver() {
+//        final String userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36";
+//        DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
+//        capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_CUSTOMHEADERS_PREFIX + "User-Agent", userAgent);
+//        PhantomJSDriver driver = new PhantomJSDriver(capabilities);
+//        return driver;
+//    }
+//
+//    private HtmlUnitDriver createHtmlUnitDriver() {
+//        HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.BEST_SUPPORTED, true);
+//        return driver;
+//    }
 
     private ChromeDriver createChromeDriver(){
         ChromeOptions cop = new ChromeOptions();
