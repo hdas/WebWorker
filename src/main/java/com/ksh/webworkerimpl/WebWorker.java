@@ -41,6 +41,11 @@ public class WebWorker implements IWebWorker
         }
 
         @Override
+        public JavascriptExecutor getJavascriptExecutor() throws IOException {
+            return (JavascriptExecutor)webDriver;
+        }
+
+        @Override
         public String getUrl() {
             return webDriver.getCurrentUrl();
         }

@@ -1,6 +1,7 @@
 package com.ksh.webwork;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,4 +14,5 @@ public interface IDocumentInfo {
     String getString() throws IOException;
     InputStream getInputStream() throws IOException;
     WebElement getWebElement() throws IOException;
+    JavascriptExecutor getJavascriptExecutor() throws IOException;
 }

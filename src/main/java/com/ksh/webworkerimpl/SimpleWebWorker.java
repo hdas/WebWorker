@@ -3,6 +3,7 @@ package com.ksh.webworkerimpl;
 import com.ksh.webwork.*;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.io.BufferedInputStream;
@@ -37,6 +38,11 @@ public class SimpleWebWorker implements IWebWorker {
         @Override
         public WebElement getWebElement() throws IOException {
             throw new IOException("WebElement is not supported for SimpleWebWorker");
+        }
+
+        @Override
+        public JavascriptExecutor getJavascriptExecutor() throws IOException {
+            return null;
         }
 
         @Override

@@ -2,6 +2,7 @@ package com.ksh.webworkerimpl;
 
 import com.ksh.webwork.IDocumentInfo;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -37,6 +38,11 @@ class AsyncWebWorkerDocumentInfo implements IDocumentInfo {
     public synchronized WebElement getWebElement() throws IOException {
         webDriver.switchTo().window(windowHandle);
         return webDriver.findElement(By.tagName("body"));
+    }
+
+    @Override
+    public JavascriptExecutor getJavascriptExecutor() throws IOException {
+        return (JavascriptExecutor)webDriver;
     }
 
     @Override

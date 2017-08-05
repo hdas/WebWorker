@@ -12,7 +12,7 @@ apply plugin: 'maven'
 apply plugin: 'java'
 
 group = 'com.ksh'
-version = '1.1.0-SNAPSHOT'
+version = '1.2.0'
 
 repositories {
     mavenCentral()
@@ -25,7 +25,7 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.1.7'
     compile "org.jsoup:jsoup:$jsoupVersion"
     compile "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
-    compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+//    compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 	//compile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:2.2.2'
 
     compile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
